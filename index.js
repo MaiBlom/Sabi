@@ -1,7 +1,9 @@
 const { Client, Intents } = require('discord.js');
 require('dotenv').config();
+
+// List of Intents: https://discord.com/developers/docs/topics/gateway#list-of-intents
 const client = new Client({
-    intents: [ Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_BANS, 'GUILDS', 'GUILD_PRESENCES', 'GUILD_MESSAGES', 'GUILD_BANS', 'GUILD_MEMBERS']
+    intents: [ Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_BANS ]
 });
 
 var commands = require('./commands/commands')
@@ -13,7 +15,6 @@ client.on('ready', () => {
 
 client.on('messageCreate', (msg) => {
     console.log(`Message received: ${msg.content}`);
-	commands.kickUser(client, msg.member);
 })
 
 client.login(process.env.BOTTOKEN);
